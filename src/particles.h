@@ -1,3 +1,5 @@
+#pragma once
+
 /*import pygame
 import math
 import random

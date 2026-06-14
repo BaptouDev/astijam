@@ -42,3 +42,7 @@ Vector2f Vector2f::normalized(){
         return *this;
     }
 }
+
+Vector2 Vector2f::to_rayvect2(){
+    return {x,y};
+}

@@ -1,3 +1,6 @@
+#pragma once
+
+#include <raylib.h>
 #include <cmath>
 
 class Vector2f{
@@ -13,4 +16,5 @@ class Vector2f{
         Vector2f operator - (const Vector2f& other) const;
         Vector2f operator * (float scalar) const;
         friend Vector2f operator * (float scalar, const Vector2f& self);
+        Vector2 to_rayvect2();
 };
