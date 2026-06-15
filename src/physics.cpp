@@ -1,9 +1,9 @@
-#include "physics.h"
+#include "include/physics.h"
 
 PhysicsBody::PhysicsBody(Vector2f position, Vector2f dimensions, Vector2f offset){
     this->position = position;
     this->collision_rect = {position.x+offset.x,position.y+offset.y,dimensions.x,dimensions.y};
-    this->base_rect;
+    this->base_rect=collision_rect;
     this->offset=offset;
     this->last_pos=position;
 }
@@ -13,7 +13,7 @@ void PhysicsBody::update_physics_col_list(std::vector<PhysicsBody> col_list,floa
     position = position + Vector2f(velocity.x*dt,0.0);
     collision_rect = {position.x+offset.x,position.y+offset.y,collision_rect.width,collision_rect.height};
     bool has_collided = false;
-    for (auto &i : col_list)
+    for (auto i : col_list)
     {
         has_collided = has_collided || CheckCollisionRecs(i.collision_rect,collision_rect);
     }

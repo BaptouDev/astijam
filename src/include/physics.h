@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <raylib.h>
-#include "vector2.h"
+#include "include/vector2.h"
 
 class PhysicsBody{
     public:
