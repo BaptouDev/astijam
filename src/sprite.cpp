@@ -18,22 +18,24 @@ void Sprite::change_pos(Vector2f new_pos){
     this->pos = new_pos;
 }
 void Sprite::draw(float dt){
-    Rectangle draw_rect = {(current_frame)%(image.width/tile_size),((current_frame)/(image.width/tile_size)),tile_size,tile_size};
-    DrawTextureRec(image,draw_rect,pos.to_rayvect2(),WHITE);
+    Rectangle src_rect = {current_frame%image.width*tile_size,
+        current_frame/image.width*tile_size,
+        tile_size,
+        tile_size};
+    Rectangle draw_rect = {pos.x, pos.y, tile_size*scale,tile_size*scale};
+    //DrawTextureRec(image,draw_rect,pos.to_rayvect2(),WHITE);
+    DrawTexturePro(image,src_rect,draw_rect,{0,0},rotation,WHITE);
 }
 
 
-struct animation{
-    std::vector<int> frames;
-    std::vector<float> durations;
-    bool one_shot;
-};
+
 
 AnimatedSprite::AnimatedSprite(const char* path_to_img, Vector2f pos, float scale, float rotation, int tile_size, int index,std::map<std::string, animation> animations, std::string base_anim)
 : Sprite(path_to_img, pos, scale, rotation, tile_size, index){
     this->animations = animations;
     this->current_time = 0.0;
     this->animations["null"] = {{0},{0.0},false};
+    this->current_frame =0;
     this->current_anim = base_anim;
     this->base_anim = base_anim;
 }

@@ -21,7 +21,11 @@ class Sprite{
         virtual void draw(float dt);
 };
 
-struct animation;
+struct animation{
+    std::vector<int> frames;
+    std::vector<float> durations;
+    bool one_shot;
+};
 
 class AnimatedSprite : public Sprite{
     public:

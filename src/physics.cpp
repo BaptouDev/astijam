@@ -24,7 +24,7 @@ void PhysicsBody::update_physics_col_list(std::vector<PhysicsBody> col_list,floa
     //now check "vertical" collision
     position = position + Vector2f(0.0,velocity.y*dt);
     collision_rect = {position.x+offset.x,position.y+offset.y,collision_rect.width,collision_rect.height};
-    bool has_collided = false;
+    has_collided = false;
     for (auto &i : col_list)
     {
         has_collided = has_collided || CheckCollisionRecs(i.collision_rect,collision_rect);
