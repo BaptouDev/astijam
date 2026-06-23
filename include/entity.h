@@ -34,3 +34,12 @@ class AnimatedEntity : Entity{
         void draw(float dt) override;
         AnimatedEntity(Vector2f position, string tag, vector<string> layers, const char* path_to_img, float scale, float rotation, int tile_size, int index, std::map<std::string, animation> animations, std::string base_anim);
 };
+
+class PhysicsEntity : AnimatedEntity {
+    public:
+        PhysicsBody body;
+        PhysicsEntity(Vector2f position, string tag, vector<string> layers, 
+            const char* path_to_img, float scale, float rotation, int tile_size, int index, 
+            std::map<std::string, animation> animations, std::string base_anim, 
+            Vector2 body_dimensions, Vector2 offset);
+};

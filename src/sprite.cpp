@@ -1,10 +1,11 @@
 #include "include/sprite.h"
 
-Sprite::Sprite(const char* path_to_img, Vector2f pos, float scale, float rotation, int tile_size, int index){
+Sprite::Sprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index){
     this->image = LoadTexture(path_to_img);
     this->pos = pos;
     this->scale = scale;
     this->rotation = rotation;
+    this->origin = origin;
     this->tile_size = tile_size;
     this->is_flipped = false;
     this->current_frame = index;
@@ -30,8 +31,8 @@ void Sprite::draw(float dt){
 
 
 
-AnimatedSprite::AnimatedSprite(const char* path_to_img, Vector2f pos, float scale, float rotation, int tile_size, int index,std::map<std::string, animation> animations, std::string base_anim)
-: Sprite(path_to_img, pos, scale, rotation, tile_size, index){
+AnimatedSprite::AnimatedSprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin,int tile_size, int index,std::map<std::string, animation> animations, std::string base_anim)
+: Sprite(path_to_img, pos, scale, rotation, origin, tile_size, index){
     this->animations = animations;
     this->current_time = 0.0;
     this->animations["null"] = {{0},{0.0},false};
