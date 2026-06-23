@@ -30,10 +30,3 @@ void AnimatedEntity::update(float dt){
 void AnimatedEntity::draw(float dt){
     sprite.draw(dt);
 }
-
-void AnimatedEntity::update(float dt){
-}
-
-void AnimatedEntity::draw(float dt){
-    sprite.draw(dt);
-}
