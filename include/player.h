@@ -8,6 +8,7 @@ class Player : AnimatedEntity {
         //movement variables
         float speed;
         float accel;
+        bool was_moving;
 
         //animation variables
         Vector2f last_dir;
