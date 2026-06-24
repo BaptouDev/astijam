@@ -41,5 +41,5 @@ double smooth_interp(double a, double b, double midpoint, double max_height, dou
 
 double simple_anim_smooth(double a, double b, double t){
     //on utilise juste tellement la fonction sous cette forme que c'est plus simple en réalité
-    return smooth_interp(a,b,(a+b)*.5,.5,t);
+    return smooth_interp(a,b,.5,(a+b)*.5,t);
 }
