@@ -5,7 +5,7 @@
 #include "include/vector2.h"
 #include "include/sprite.h"
 #include "include/physics.h"
-#include "include/player.h"
+//#include "include/player.h"
 
 using namespace std;
 

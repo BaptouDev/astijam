@@ -15,7 +15,7 @@ class Sprite{
         Texture2D image;
         int tile_size;
         bool is_flipped;
-        int current_frame;
+        int draw_frame;
         Sprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index);
         Sprite();
         void change_pos(Vector2f new_pos);
@@ -34,6 +34,7 @@ class AnimatedSprite : public Sprite{
         std::string base_anim;
         float current_time;
         std::string current_anim;
+        int current_frame;
         void draw(float dt) override;
         void change_anim(std::string new_anim);
         AnimatedSprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index, std::map<std::string, animation> animations, std::string base_anim);
