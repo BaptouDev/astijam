@@ -1,9 +1,11 @@
 #pragma once
 #include <raylib.h>
 #include <cmath>
+#include "include/vector2.h"
 
 //Linear interpolation from a to b with parameter t
 double lerp(double a, double b, double t);
+Vector2f lerpv(Vector2f a, Vector2f b, double t);
 
 //cubic interpolation from a to b with parameter t
 double cerp(double a, double b, double t);

@@ -8,6 +8,10 @@ PhysicsBody::PhysicsBody(Vector2f position, Vector2f dimensions, Vector2f offset
     this->last_pos=position;
 }
 
+PhysicsBody::PhysicsBody(){
+    
+}
+
 void PhysicsBody::update_physics_col_list(std::vector<PhysicsBody> col_list,float dt){
     //check "side" collision first (this method is not the most efficient but it's fine in reality)
     position = position + Vector2f(velocity.x*dt,0.0);

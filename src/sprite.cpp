@@ -8,7 +8,7 @@ Sprite::Sprite(const char* path_to_img, Vector2f pos, float scale, float rotatio
     this->origin = origin;
     this->tile_size = tile_size;
     this->is_flipped = false;
-    this->current_frame = index;
+    this->draw_frame = index;
 }
 
 Sprite::Sprite(){
@@ -19,8 +19,8 @@ void Sprite::change_pos(Vector2f new_pos){
     this->pos = new_pos;
 }
 void Sprite::draw(float dt){
-    Rectangle src_rect = {current_frame%image.width*tile_size,
-        current_frame/image.width*tile_size,
+    Rectangle src_rect = {draw_frame%image.width*tile_size,
+        draw_frame/image.width*tile_size,
         tile_size,
         tile_size};
     Rectangle draw_rect = {pos.x, pos.y, tile_size*scale,tile_size*scale};
@@ -35,8 +35,9 @@ AnimatedSprite::AnimatedSprite(const char* path_to_img, Vector2f pos, float scal
 : Sprite(path_to_img, pos, scale, rotation, origin, tile_size, index){
     this->animations = animations;
     this->current_time = 0.0;
+    this->current_frame=0;
     this->animations["null"] = {{0},{0.0},false};
-    this->current_frame =0;
+    this->draw_frame =0;
     this->current_anim = base_anim;
     this->base_anim = base_anim;
 }
@@ -47,6 +48,7 @@ AnimatedSprite::AnimatedSprite(){
 
 void AnimatedSprite::change_anim(std::string new_anim){
     current_anim = new_anim;
+    current_frame = 0;
 }
 
 void AnimatedSprite::draw(float dt){
@@ -62,6 +64,7 @@ void AnimatedSprite::draw(float dt){
             }
         }
     }
+    draw_frame = animations[current_anim].frames[current_frame];
     Sprite::draw(dt);
 }
 

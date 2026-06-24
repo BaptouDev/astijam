@@ -10,9 +10,10 @@ class PhysicsBody{
         Vector2f position;
         Vector2f velocity;
         PhysicsBody(Vector2f position, Vector2f dimensions, Vector2f offset);
+        PhysicsBody();
         void update_physics_col_list(std::vector<PhysicsBody> col_list,float dt);
-    private:
         Vector2f last_pos;
+    private:
         Vector2f offset;
         Rectangle base_rect;
 };

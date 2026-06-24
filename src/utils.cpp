@@ -4,6 +4,11 @@ double lerp(double a, double b, double t){
     return (a + (b-a) * t);
 }
 
+Vector2f lerpv(Vector2f a, Vector2f b, double t){
+    return (a + (b-a) * t);
+}
+
+
 double cerp(double a, double b, double t){
     //honnêtement j'avais trouvé cette formule sous crack c'est juste des maths mais sah j'ai oublié quels maths
     return (2*(a-b)*t*t*t+3*(b-a)*t*t+a);
