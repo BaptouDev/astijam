@@ -18,12 +18,12 @@ Sprite::Sprite(){
 void Sprite::change_pos(Vector2f new_pos){
     this->pos = new_pos;
 }
-void Sprite::draw(float dt){
+void Sprite::draw(float dt,Vector2f camera_pos){
     Rectangle src_rect = {draw_frame%image.width*tile_size,
         draw_frame/image.width*tile_size,
         tile_size,
         tile_size};
-    Rectangle draw_rect = {pos.x+origin.x, pos.y+origin.y, tile_size*scale,tile_size*scale};
+    Rectangle draw_rect = {pos.x+origin.x-camera_pos.x, pos.y+origin.y-camera_pos.y, tile_size*scale,tile_size*scale};
     //DrawTextureRec(image,draw_rect,pos.to_rayvect2(),WHITE);
     DrawTexturePro(image,src_rect,draw_rect,origin.to_rayvect2(),rotation,WHITE);
 }
@@ -51,7 +51,7 @@ void AnimatedSprite::change_anim(std::string new_anim){
     current_frame = 0;
 }
 
-void AnimatedSprite::draw(float dt){
+void AnimatedSprite::draw(float dt,Vector2f camera_pos){
     current_time+=dt;
     if (current_time>animations[current_anim].durations[current_frame]){
         current_time = 0;
@@ -65,6 +65,6 @@ void AnimatedSprite::draw(float dt){
         }
     }
     draw_frame = animations[current_anim].frames[current_frame];
-    Sprite::draw(dt);
+    Sprite::draw(dt,camera_pos);
 }
 

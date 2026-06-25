@@ -1,0 +1,18 @@
+{
+	"identifier": "Level_0",
+	"uniqueIdentifer": "347f8420-6fc0-11f1-ae66-57db6e5077e3",
+	"x": 0,
+	"y": 0,
+	"width": 752,
+	"height": 720,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"AutoLayer.png",
+		"Water.png",
+		"Main.png",
+		"Tiles1Layer.png"
+	],
+	"entities" : {}
+}

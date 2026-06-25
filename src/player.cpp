@@ -103,8 +103,8 @@ void Player::update(float dt,Vector2f mouse_pos){
     was_moving = is_moving;
 }
 
-void Player::draw(float dt){
+void Player::draw(float dt,Vector2f camera_pos){
     sprite.pos = body.position;
-    sword_sprite.draw(dt);
-    AnimatedEntity::draw(dt);
+    sword_sprite.draw(dt,camera_pos);
+    AnimatedEntity::draw(dt,camera_pos);
 }

@@ -10,7 +10,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     Player player = Player(Vector2f(0,0));
-
+    Sprite map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
 
     float dt = GetFrameTime();
     SetTargetFPS(60);
@@ -22,7 +22,8 @@ int main(void)
 
             ClearBackground(SKYBLUE);
             //tan.draw(dt);
-            player.draw(dt);
+            map.draw(dt,player.body.position);
+            player.draw(dt,player.body.position);
 
         EndDrawing();
     }

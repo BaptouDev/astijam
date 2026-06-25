@@ -19,7 +19,7 @@ class Sprite{
         Sprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index);
         Sprite();
         void change_pos(Vector2f new_pos);
-        virtual void draw(float dt);
+        virtual void draw(float dt,Vector2f camera_pos);
 };
 
 struct animation{
@@ -35,7 +35,7 @@ class AnimatedSprite : public Sprite{
         float current_time;
         std::string current_anim;
         int current_frame;
-        void draw(float dt) override;
+        void draw(float dt,Vector2f camera_pos) override;
         void change_anim(std::string new_anim);
         AnimatedSprite(const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index, std::map<std::string, animation> animations, std::string base_anim);
         AnimatedSprite();

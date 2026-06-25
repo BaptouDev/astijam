@@ -12,8 +12,8 @@ SpriteEntity::SpriteEntity(Vector2f position, string tag, vector<string> layers,
     this->sprite = Sprite(path_to_img, position, scale, rotation, Vector2f(0,0),tile_size, index);
 }
 
-void SpriteEntity::draw(float dt){
-    sprite.draw(dt);
+void SpriteEntity::draw(float dt,Vector2f camera_pos){
+    sprite.draw(dt, camera_pos);
 }
 
 void SpriteEntity::update(float dt,Vector2f mouse_pos){
@@ -27,6 +27,6 @@ AnimatedEntity::AnimatedEntity(Vector2f position, string tag, vector<string> lay
 void AnimatedEntity::update(float dt,Vector2f mouse_pos){
 }
 
-void AnimatedEntity::draw(float dt){
-    sprite.draw(dt);
+void AnimatedEntity::draw(float dt,Vector2f camera_pos){
+    sprite.draw(dt,camera_pos);
 }
