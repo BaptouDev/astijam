@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <set>
 #include <map>
 #include <vector>
@@ -134,7 +134,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i][j - 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -181,7 +181,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i][j + 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur,posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -228,7 +228,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i+1][j].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -275,7 +275,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i-1][j].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -322,7 +322,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i-1][j - 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -368,7 +368,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i+1][j - 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -415,7 +415,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i-1][j + 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -462,7 +462,7 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
                         cellDetails[i+1][j + 1].parent_j = j;
                           
                         Found_Dest = true;
-                        return build_chemin(cellDetails, posjoueur);
+                        return build_chemin(cellDetails, posjoueur, posennemi);
 
 
                     }else if (distances.find(newpos)==distances.end()){  //pas dans le dico
@@ -504,3 +504,5 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
 
     }
 }
+
+*/
