@@ -13,8 +13,19 @@ class Player : AnimatedEntity {
         //animation variables
         Vector2f last_dir;
 
+        //sword variables
+        Sprite sword_sprite;
+        float sword_rot;
+        float col_radius;
+        float dist;
+        float sword_max_rot;
+        float sword_rot_time;
+        float sword_rot_timer;
+        float sword_rot_halfway;
+        float init_rot;
+
         PhysicsBody body;
-        void update(float dt) override;
+        void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt) override;
         Player(Vector2f init_pos);
 };

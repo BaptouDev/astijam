@@ -17,7 +17,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         dt = GetFrameTime();
-        player.update(dt);
+        player.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y));
         BeginDrawing();
 
             ClearBackground(SKYBLUE);
