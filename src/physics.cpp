@@ -1,11 +1,12 @@
 #include "include/physics.h"
 
-PhysicsBody::PhysicsBody(Vector2f position, Vector2f dimensions, Vector2f offset){
+PhysicsBody::PhysicsBody(Vector2f position, Vector2f dimensions, Vector2f offset, map<string,bool> events){
     this->position = position;
     this->collision_rect = {position.x+offset.x,position.y+offset.y,dimensions.x,dimensions.y};
     this->base_rect=collision_rect;
     this->offset=offset;
     this->last_pos=position;
+    this->events = events;
 }
 
 PhysicsBody::PhysicsBody(){
