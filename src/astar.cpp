@@ -504,3 +504,5 @@ vector<Vector2f> astar(int grid, Vector2f posennemi, Vector2f posjoueur){
 
     }
 }
+
+*/
