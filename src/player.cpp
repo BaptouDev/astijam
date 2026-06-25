@@ -4,44 +4,79 @@
 
 Player::Player(Vector2f init_pos):
 AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
-     {{"idle_front", {{2},{1.0},false}},
-    {"idle_back", {{3},{1.0},false}},
+     {{"idle_front", {{6},{1.0},false}},
+    {"idle_back", {{9},{1.0},false}},
     {"idle_right", {{0},{1.0},false}},
-    {"idle_left", {{1},{1.0},false}}}, 
+    {"idle_left", {{3},{1.0},false}},
+    {"run_front", {{6,7,6,8},{.3,.3,.3,.3},false}},
+    {"run_back", {{9,10,9,11},{.3,.3,.3,.3},false}},
+    {"run_right", {{0,1,0,2},{.3,.3,.3,.3},false}},
+    {"run_left", {{3,4,3,5},{.3,.3,.3,.3},false}},}, 
      "idle_front") {
     body = PhysicsBody();
     speed=200;
     accel=67;
+    was_moving=false;
+    sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
 
 void Player::update(float dt){
     Vector2f input= Vector2f(0,0);
+    bool is_moving = false;
+
     if(IsKeyDown(KEY_RIGHT)){
         input=input+Vector2f(1,0);
-        sprite.change_anim("idle_right");
+        
+        if (!(input.x == last_dir.x)){
+            sprite.change_anim("run_right");
+        }
+        is_moving =true;
+        was_moving =true;
     }
     if(IsKeyDown(KEY_LEFT)){
         input=input+Vector2f(-1,0);
-        sprite.change_anim("idle_left");
-
+        if (!(input.x == last_dir.x)){
+            sprite.change_anim("run_left");
+        }
+        is_moving =true;
+        was_moving =true;
     }
     if(IsKeyDown(KEY_UP)){
         input=input+Vector2f(0,-1);
-        sprite.change_anim("idle_back");
+        if (!(input.y == last_dir.y)){
+            sprite.change_anim("run_back");
+        }
+        is_moving =true;
+        was_moving =true;
     }
     if(IsKeyDown(KEY_DOWN)){
         input=input+Vector2f(0,1);
-        sprite.change_anim("idle_front");
+        if (!(input.y == last_dir.y)){
+            sprite.change_anim("run_front");
+        }
+        is_moving =true;
+        was_moving =true;
     }
-    input = input.normalized();
-    /*input_vect = input_vect.normalize()
-        self.vel = utils.lerp(self.vel,input_vect*self.max_speed,self.accel*dt)*/
-    body.velocity = lerpv(body.velocity,input*speed,accel*dt);
+    if(is_moving){
+        last_dir = input;
+    }else{
+        if(last_dir.x==1){
+            sprite.change_anim("idle_right");
+        }
+        if(last_dir.x==-1){
+            sprite.change_anim("idle_left");
+        }
+        if(last_dir.y==1){
+            sprite.change_anim("idle_front");
+        }
+        if(last_dir.y==-1){
+            sprite.change_anim("idle_back");
+        }
+    }
+    body.velocity = lerpv(body.velocity,input.normalized()*speed,accel*dt);
     body.update_physics_col_list({},dt);
-    std::cout << body.position.x;
-    std::cout << body.position.y;
-    std::cout << "\n";
     body.last_pos = body.position;
+    was_moving = is_moving;
 }
 
 void Player::draw(float dt){

@@ -23,9 +23,9 @@ void Sprite::draw(float dt){
         draw_frame/image.width*tile_size,
         tile_size,
         tile_size};
-    Rectangle draw_rect = {pos.x, pos.y, tile_size*scale,tile_size*scale};
+    Rectangle draw_rect = {pos.x+origin.x, pos.y+origin.y, tile_size*scale,tile_size*scale};
     //DrawTextureRec(image,draw_rect,pos.to_rayvect2(),WHITE);
-    DrawTexturePro(image,src_rect,draw_rect,{0,0},rotation,WHITE);
+    DrawTexturePro(image,src_rect,draw_rect,origin.to_rayvect2(),rotation,WHITE);
 }
 
 
