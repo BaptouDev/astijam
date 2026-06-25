@@ -17,10 +17,9 @@ struct cell {
 struct shit {
     Vector2f pos;
     int distance;
-}
+};
 
-double calculateHValue(Vector2f pos, Vector2f dest)
-{
+double calculateHValue(Vector2f pos, Vector2f dest){
     // Return using the distance formula
     return ((double)sqrt(
         (pos.x - dest.x) * (pos.x - dest.x)
@@ -45,7 +44,7 @@ bool is_valid(Vector2f pos){
     return false;
 }
 
-vector<Vector2f> build_chemin(cell[][],Vector2f dest, Vector2f pos){
+vector<Vector2f> build_chemin(Cells[][],Vector2f dest, Vector2f pos){
     int i = dest.x;
     int j = dest.y;
     vector<Vector2f>res;
@@ -54,7 +53,7 @@ vector<Vector2f> build_chemin(cell[][],Vector2f dest, Vector2f pos){
         nouveau.x = i;
         nouveau.y = j;
         res.push_back(nouveau);
-        Vector2f cur = cell[i][j];
+        Vector2f cur = Cells[i][j];
         i = cur.parent_i;
         j = cur.parent_j;
     }
