@@ -102,11 +102,18 @@ int main(void)
     //Boss boss = Boss(Vector2f(72,72));
 
 
-    //Sound sound;
+    Sound sound;
+    Music music;
+
+    
 
    // InitAudioDevice();
    
-    //sound= LoadSound("res/audio/eatpizza.wav");
+    sound= LoadSound("res/audio/eatpizza.wav");
+
+    music = LoadMusicStream("res/audio/song1.wav");
+
+    PlayMusicStream(music);
 
     float dt = GetFrameTime();
     Vector2f camera_pos;
@@ -114,10 +121,14 @@ int main(void)
     player.get_col_list(map1col);
     while (!WindowShouldClose())
     {
-       // if(IsKeyDown(KEY_UP)){
-       //     PlaySound(sound);
 
-       // }
+        UpdateMusicStream(music);
+        if(IsKeyDown(KEY_UP)){
+            PlaySound(sound);
+
+        }
+
+        
 
 
         dt = GetFrameTime();
@@ -169,7 +180,6 @@ int main(void)
         EndDrawing();
     }
 
-    
     CloseAudioDevice();
     CloseWindow();
 
