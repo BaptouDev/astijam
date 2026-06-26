@@ -60,9 +60,9 @@ void FlyingEnemy::update(float dt, Vector2f mouse_pos){
     
     if(!is_diving){
 
-        body.position =  (player_pos - body.position ).normalized()*speed*dt + body.position;
+        body.position =  (mouse_pos - body.position ).normalized()*speed*dt + body.position;
 
-        if( (player_pos.x - body.position.x) <= 0 ){
+        if( (mouse_pos.x - body.position.x) <= 0 ){
             if(was_looking_right){
                 sprite.change_anim("run_left");
                 was_looking_right = false;
@@ -80,8 +80,8 @@ void FlyingEnemy::update(float dt, Vector2f mouse_pos){
         dive_timer=-dive_duration;
         is_diving = true;
         dive_duration_timer = 0;
-        divedirection = (player_pos - body.position ).normalized();
-        if( (player_pos.x - body.position.x) <= 0 ){
+        divedirection = (mouse_pos - body.position ).normalized();
+        if( (mouse_pos.x - body.position.x) <= 0 ){
             sprite.change_anim("dive_left");
             divesright = false;
         }else{
@@ -93,7 +93,7 @@ void FlyingEnemy::update(float dt, Vector2f mouse_pos){
         is_diving = false;
 
 
-        if( (player_pos.x - body.position.x) <= 0 ){
+        if( (mouse_pos.x - body.position.x) <= 0 ){
 
                 sprite.change_anim("run_left");
                 was_looking_right = false;

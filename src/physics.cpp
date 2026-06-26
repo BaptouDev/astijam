@@ -39,3 +39,10 @@ void PhysicsBody::update_physics_col_list(std::vector<PhysicsBody> col_list,floa
         collision_rect.y = position.y+offset.y;
     }
 }
+AreaRect::AreaRect(){
+
+}
+
+AreaRect::AreaRect(Vector2f position, Vector2f dimensions, Vector2f offset){
+    collision_rect = {position.x+offset.x,position.y+offset.y, dimensions.x,dimensions.y};
+}

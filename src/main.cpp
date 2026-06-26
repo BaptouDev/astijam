@@ -6,6 +6,7 @@
 #include <include/enemy.h>
 #include <include/json.hpp>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <include/flyingenemy.h>
 
@@ -60,20 +61,43 @@ int main(void)
             }
         }
     }
+    vector<PhysicsBody> full_col;
+    full_col.reserve(bridgescol.size() + map1col.size());
+    std::copy(bridgescol.begin(), bridgescol.end(), std::back_inserter(full_col));
+    std::copy(map1col.begin(), map1col.end(), std::back_inserter(full_col));
+
+    vector<PhysicsBody> current_col = map1col;
+
+    vector<AnimatedEntity*> current_enemies;
 
     ifstream entities_file("res/maps/test2/simplified/Level_0/data.json");
     json data_file;
     entities_file>>data_file;
     map<int,vector<AnimatedEntity*>> enemies;
+    map<int,AreaRect> bridges;
 
-    auto paff = data_file["entities"]["DinoEnemy1"].get<vector<json>>();
-    for(auto i : paff){
-        enemies[0].push_back(new Enemy(Vector2f(i["x"].get<float>(),i["y"].get<float>())));
+    auto dino_enemy1_file = data_file["entities"]["DinoEnemy1"].get<vector<json>>();
+    for(auto i : dino_enemy1_file){
+        enemies[i["customFields"]["room"].get<int>()].push_back(new Enemy(Vector2f(i["x"].get<float>()*4.0,i["y"].get<float>()*4.0)));
     }
 
-    Enemy enemy = Enemy(Vector2f(67,67));
+    auto dino_enemy2_file = data_file["entities"]["DinoEnemy2"].get<vector<json>>();
+    for(auto i : dino_enemy2_file){
+        enemies[i["customFields"]["room"].get<int>()].push_back(new FlyingEnemy(Vector2f(i["x"].get<float>()*4.0,i["y"].get<float>()*4.0)));
+    }
 
-    FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
+    auto bridge_file = data_file["entities"]["Bridge"].get<vector<json>>();
+    for(auto i : bridge_file){
+        bridges[i["customFields"]["room"].get<int>()] = AreaRect(Vector2f(i["x"].get<float>()*4.0,i["y"].get<float>()*4.0),Vector2f(64,64),Vector2f(0,0));
+    }
+
+
+    int room_counter=0;
+
+    bool is_fighting = false;
+    //Enemy enemy = Enemy(Vector2f(67,67));
+
+    //FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
     //Boss boss = Boss(Vector2f(72,72));
 
     float dt = GetFrameTime();
@@ -84,28 +108,50 @@ int main(void)
     {
         dt = GetFrameTime();
         player.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
-        enemy.get_player_pos(player.body.position);
+        for(auto i : current_enemies){
+            i->update(dt,player.body.position);
+        }
+        /*enemy.get_player_pos(player.body.position);
         enemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         fenemy.get_player_pos(player.body.position);
-        fenemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
+        fenemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );*/
 
         //boss.get_player_pos(player.body.position);
         //boss.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
+
+        if(CheckCollisionRecs(player.body.collision_rect,bridges[room_counter].collision_rect)){
+            for(auto i : enemies[room_counter]){
+                current_enemies.push_back(i);
+            }
+            is_fighting = true;
+            //player.get_col_list(full_col);
+            room_counter++;
+            cout<<"lessgo"<<endl;
+        }
+        if(is_fighting&&current_enemies.empty()){
+            player.get_col_list(map1col);
+        }
+
         BeginDrawing();
             ClearBackground(SKYBLUE);
             
             //tan.draw(dt);
             sprite_map.draw(dt,camera_pos);
-            for (auto i : map1col){
+            /*for (auto i : map1col){
                 DrawRectangle(i.position.x-camera_pos.x,i.position.y-camera_pos.y,i.collision_rect.height,i.collision_rect.width,GREEN);
-            }
+            }*/
+            /*for(auto i: bridges){
+                DrawRectangle(i.second.collision_rect.x-camera_pos.x,i.second.collision_rect.y-camera_pos.y,i.second.collision_rect.height,i.second.collision_rect.width,GREEN);
+            }*/
             player.draw(dt,camera_pos);
-            enemy.draw(dt,camera_pos);
-            fenemy.draw(dt,camera_pos);
-            DrawRectangle(player.body.collision_rect.x-camera_pos.x,player.body.collision_rect.y-camera_pos.y,player.body.collision_rect.width,player.body.collision_rect.height,GREEN);
+            for(auto i : current_enemies){
+                i->draw(dt,camera_pos);
+            }
+            /*enemy.draw(dt,camera_pos);
+            fenemy.draw(dt,camera_pos);*/
+            //DrawRectangle(player.body.collision_rect.x-camera_pos.x,player.body.collision_rect.y-camera_pos.y,player.body.collision_rect.width,player.body.collision_rect.height,GREEN);
             //boss.draw(dt,camera_pos);
-
         EndDrawing();
     }
     CloseWindow();

@@ -44,10 +44,10 @@ void Enemy::get_player_pos(Vector2f pos){
 
 void Enemy::update(float dt, Vector2f mouse_pos){
 
-    body.position =  (player_pos - body.position ).normalized()*speed*dt + body.position;
+    body.position =  (mouse_pos - body.position ).normalized()*speed*dt + body.position;
 
 
-    if( (player_pos.x - body.position.x) <= 0 ){
+    if( (mouse_pos.x - body.position.x) <= 0 ){
         if(was_looking_right){
             sprite.change_anim("run_left");
             was_looking_right = false;

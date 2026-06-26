@@ -29,6 +29,7 @@ class AreaRect{
         Vector2f velocity;
         vector<string> layers;
         AreaRect(Vector2f position, Vector2f dimensions, Vector2f offset);
+        AreaRect();
 };
 
 /*for(auto i : shit){
