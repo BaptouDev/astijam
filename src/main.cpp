@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <utility>
+
 #include <include/entity.h>
 #include <include/player.h>
 #include <include/enemy.h>
@@ -9,6 +10,7 @@
 #include <include/flyingenemy.h>
 
 using namespace std;
+using json = nlohmann::json;
 
 int main(void)
 {
@@ -17,7 +19,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     Player player = Player(Vector2f(128,128));
-    Sprite map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
+    Sprite sprite_map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
 
     vector<PhysicsBody> map1col;
     vector<PhysicsBody> bridgescol;
@@ -61,6 +63,16 @@ int main(void)
         }
     }
 
+    ifstream entities_file("res/maps/test2/simplified/Level_0/data.json");
+    json data_file;
+    entities_file>>data_file;
+    map<int,vector<AnimatedEntity*>> enemies;
+
+    auto paff = data_file["entities"]["DinoEnemy1"].get<vector<json>>();
+    for(auto i : paff){
+        enemies[0].push_back(new Enemy(Vector2f(i["x"].get<float>(),i["y"].get<float>())));
+    }
+
     Enemy enemy = Enemy(Vector2f(67,67));
 
     FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
@@ -82,7 +94,7 @@ int main(void)
             ClearBackground(SKYBLUE);
             
             //tan.draw(dt);
-            map.draw(dt,camera_pos);
+            sprite_map.draw(dt,camera_pos);
             for (auto i : map1col){
                 DrawRectangle(i.position.x-camera_pos.x,i.position.y-camera_pos.y,i.collision_rect.height,i.collision_rect.width,GREEN);
             }
