@@ -9,17 +9,30 @@ using namespace std;
 Enemy::Enemy(Vector2f init_pos):
 AnimatedEntity(init_pos,"enemy", {}, "res/img/dinoennemi1.png", 4.0, 0.0, 32, 0,
      {{"idle_left", {{0},{1.0},false}},
-        {"idle_right", {{1},{1.0},false}}}, "idle_left"
+      {"idle_right", {{3},{1.0},false}}, 
+      {"run_right", {{0,1,0,2},{0.3, 0.3,0.3,0.3}, false }},
+      {"run_left",  { {3,4,3,5}, {0.3,0.3,0.3,0.3}, false }}
+    },
+      "idle_left"
      ) {
+
+       /*    {{"idle_front", {{6},{1.0},false}},
+    {"idle_back", {{9},{1.0},false}},
+    {"idle_right", {{0},{1.0},false}},
+    {"idle_left", {{3},{1.0},false}},
+    {"run_front", {{6,7,6,8},{.3,.3,.3,.3},false}},
+    {"run_back", {{9,10,9,11},{.3,.3,.3,.3},false}},
+    {"run_right", {{0,1,0,2},{.3,.3,.3,.3},false}},
+    {"run_left", {{3,4,3,5},{.3,.3,.3,.3},false}},}, */
     body = PhysicsBody(init_pos,Vector2f(16,16),Vector2f(8,8),{{"hit",false}});
-    speed=67;
+    speed=127;
     
     player_pos = Vector2f(0,0);
     
-    was_moving=false;
+    was_looking_right=false;
 
 
-    hp = 2000;
+    hp = 200;
 
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
@@ -34,9 +47,15 @@ void Enemy::update(float dt, Vector2f mouse_pos){
 
 
     if( (player_pos.x - body.position.x) <= 0 ){
-        sprite.change_anim("idle_right");
+        if(was_looking_right){
+            sprite.change_anim("run_left");
+            was_looking_right = false;
+        }
     }else{
-        sprite.change_anim("idle_left");
+        if(!was_looking_right){
+        sprite.change_anim("run_right");
+            was_looking_right = true;
+        }
     }
 
 }
