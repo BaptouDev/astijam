@@ -113,7 +113,12 @@ void FlyingEnemy::update(float dt, Vector2f mouse_pos){
         body.position =  divedirection*dive_speed*dt + body.position;
     }
 
+    position = body.position;
 
+}
+
+void FlyingEnemy::damage(int amount){
+    hp-=amount;
 }
 
 

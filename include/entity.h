@@ -16,6 +16,8 @@ class Entity{
         vector<string> layers;
         virtual void update(float dt,Vector2f mouse_pos)=0;
         virtual void draw(float dt,Vector2f camera_pos)=0;
+        virtual void damage(int amount)=0;
+        virtual void is_dead()=0;
         Entity(Vector2f position, string tag, vector<string> layers);
 };
 
@@ -24,6 +26,8 @@ class SpriteEntity : public Entity{
         Sprite sprite;
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
+        void damage(int amount) override;
+        void is_dead() override;
         SpriteEntity(Vector2f position, string tag, vector<string> layers,const char* path_to_img, float scale, float rotation, int tile_size, int index);
 };
 
@@ -32,6 +36,8 @@ class AnimatedEntity : public Entity{
         AnimatedSprite sprite;
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
+        void damage(int amount) override;
+        void is_dead() override;
         AnimatedEntity(Vector2f position, string tag, vector<string> layers, const char* path_to_img, float scale, float rotation, int tile_size, int index, std::map<std::string, animation> animations, std::string base_anim);
 };
 

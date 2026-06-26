@@ -13,6 +13,7 @@ SpriteEntity::SpriteEntity(Vector2f position, string tag, vector<string> layers,
 }
 
 void SpriteEntity::draw(float dt,Vector2f camera_pos){
+    sprite.pos = position;
     sprite.draw(dt, camera_pos);
 }
 
@@ -29,4 +30,20 @@ void AnimatedEntity::update(float dt,Vector2f mouse_pos){
 
 void AnimatedEntity::draw(float dt,Vector2f camera_pos){
     sprite.draw(dt,camera_pos);
+}
+
+void SpriteEntity::damage(int amount){
+
+}
+
+void AnimatedEntity::damage(int amount){
+    
+}
+
+void SpriteEntity::is_dead(){
+
+}
+
+void AnimatedEntity::is_dead(){
+    
 }

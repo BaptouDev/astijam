@@ -60,9 +60,12 @@ void Enemy::update(float dt, Vector2f mouse_pos){
             was_looking_right = true;
         }
     }
-
+    position = body.position;
 }
 
+void Enemy::damage(int amount){
+    hp-=amount;
+}
 
 /*
     Vector2f relative_mouse_pos = body.position + sprite.origin - mouse_pos;

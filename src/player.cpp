@@ -25,6 +25,8 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     sword_rot_timer=.5;
     sword_rot_time=.67;
 
+    fireball_intervall = .3;
+
     maxhp = 1000;
     curhp = 750;
     
@@ -42,6 +44,7 @@ void Player::get_col_list(vector<PhysicsBody> col_list){
 
 void Player::update(float dt,Vector2f mouse_pos){
     sword_rot_timer+=dt;
+    fireball_cd-=dt;
 
     Vector2f input= Vector2f(0,0);
     bool is_moving = false;
@@ -118,8 +121,45 @@ void Player::update(float dt,Vector2f mouse_pos){
 
 void Player::draw(float dt,Vector2f camera_pos){
     sprite.pos = body.position;
-    sword_sprite.draw(dt,camera_pos);
+    //sword_sprite.draw(dt,camera_pos);
     DrawRectangle(400-h_barw/2,400,h_barw,h_barh,BLACK);
     DrawRectangle(400-h_barw/2,400,h_barw*(static_cast<float>(curhp)/(float)maxhp),h_barh,GREEN);
     AnimatedEntity::draw(dt,camera_pos);
+}
+
+/*Fireball Player::create_fireball(Vector2f mouse_pos){
+    return NULL;
+}*/
+
+Fireball::Fireball(Vector2f position, float angle, float speed,Vector2f dir):
+SpriteEntity(position, "ball", {}, "res/img/player_fireball.png",4.0,angle,16.0,0){
+    this->radius = 8.0*4.0;
+    this->speed = speed;
+    this->direction = dir;
+    life_time = 5.0;
+    life_timer = life_time;
+    sprite.origin = Vector2f(32.0,32.0);
+}
+
+void Fireball::update(float dt, Vector2f mouse_pos){
+    life_timer-=dt;
+    position = position + dt*speed*direction;
+}
+
+void Fireball::draw(float dt, Vector2f camera_pos){
+    SpriteEntity::draw(dt,camera_pos);
+}
+
+void Player::damage(int amount){
+
+}
+void Fireball::damage(int amount){
+
+}
+
+void Player::is_dead(){
+
+}
+void Fireball::is_dead(){
+
 }
