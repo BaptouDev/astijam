@@ -20,9 +20,10 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
 
     sword_sprite = Sprite("res/img/boneweapon.png",init_pos,4.0,0.0,Vector2f(16*4.0,16*4.0),32,0);//const char* path_to_img, Vector2f pos, float scale, float rotation, Vector2f origin, int tile_size, int index
     dist = 26*4.0;
-    sword_max_rot = PI/2+PI/8;
+    sword_dist_from_pivot = 16*4.0;
+    sword_max_rot = 0;
     sword_rot_timer=.5;
-    sword_rot_time=.5;
+    sword_rot_time=.67;
     
     was_moving=false;
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
@@ -93,8 +94,9 @@ void Player::update(float dt,Vector2f mouse_pos){
     Vector2f relative_mouse_pos = body.position + sprite.origin - mouse_pos;
     float mouse_angle = atan2(relative_mouse_pos.y,relative_mouse_pos.x);
     sword_sprite.rotation = RAD2DEG*(mouse_angle+sword_rot);
-    sword_sprite.pos = Vector2f(-cos(mouse_angle),-sin(mouse_angle))*dist + body.position+Vector2f(-cos(sword_rot),-sin(sword_rot))*16*4.0; //+ sprite.origin;
-
+    Vector2f pivot = Vector2f(-cos(mouse_angle),-sin(mouse_angle))*dist + body.position;//+Vector2f(-cos(sword_rot),-sin(sword_rot))*16*4.0; //+ sprite.origin;
+    //Vector2f sword_pos = pivot + Vector2f(cos(sword_rot+mouse_angle), sin(sword_rot+mouse_angle))*sword_dist_from_pivot;
+    sword_sprite.pos = pivot;
     body.velocity = lerpv(body.velocity,input.normalized()*speed,accel*dt);
 
     

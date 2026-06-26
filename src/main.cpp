@@ -17,6 +17,7 @@ int main(void)
     Enemy enemy = Enemy(Vector2f(67,67));
 
     float dt = GetFrameTime();
+    Vector2f camera_pos;
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
@@ -27,11 +28,14 @@ int main(void)
 
         BeginDrawing();
 
+        player.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
+        camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
+        BeginDrawing();
             ClearBackground(SKYBLUE);
             //tan.draw(dt);
-            map.draw(dt,player.body.position);
-            player.draw(dt,player.body.position);
-            enemy.draw(dt,player.body.position);
+            map.draw(dt,camera_pos);
+            player.draw(dt,camera_pos);
+            enemy.draw(dt,camera_pos);
 
         EndDrawing();
     }
