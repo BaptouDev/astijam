@@ -102,18 +102,31 @@ int main(void)
     //Boss boss = Boss(Vector2f(72,72));
 
 
-    Sound sound;
+    Sound pizza;
+    Sound gameover;
+    Sound successfloor;
+    Sound jungleambiance;
+    Sound hitsound;
+    Sound enemibeatup;
+    Sound boulefire;
     Music music;
 
     
 
    // InitAudioDevice();
    
-    sound= LoadSound("res/audio/eatpizza.wav");
+    pizza= LoadSound("res/audio/eatpizza.wav");
+    gameover = LoadSound("res/audio/gameoverpertedepv.wav");
+    successfloor = LoadSound("res/audio/successfloor.wav");
+    hitsound = LoadSound("res/audio/hitsound.wav");
+    boulefire = LoadSound("res/audio/jungleambiance.wav");
+    jungleambiance = LoadSound("res/audio/eatpizza.wav");
+    enemibeatup = LoadSound("res/audio/enemigetbeatup.wav");
 
-    music = LoadMusicStream("res/audio/song1.wav");
+    music = LoadMusicStream("res/audio/song2.wav");
 
     PlayMusicStream(music);
+    
 
     float dt = GetFrameTime();
     Vector2f camera_pos;
@@ -123,11 +136,13 @@ int main(void)
     {
 
         UpdateMusicStream(music);
-        if(IsKeyDown(KEY_UP)){
-            PlaySound(sound);
+  
 
+  
+
+        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
+            PlaySound(hitsound);
         }
-
         
 
 
