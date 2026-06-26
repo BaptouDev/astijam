@@ -16,14 +16,16 @@ int main(void)
     const int screenHeight = 450;
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
-    Player player = Player(Vector2f(0,0));
+    Player player = Player(Vector2f(128,128));
     Sprite map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
 
     vector<PhysicsBody> map1col;
+    vector<PhysicsBody> bridgescol;
+    vector<vector<int>> int_map1;
+    vector<vector<int>> intbridges;
 
     ifstream file("res/maps/test2/simplified/Level_0/Tiles1Layer.csv");
     string line;
-    vector<vector<int>> int_map1;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string field;
@@ -33,12 +35,28 @@ int main(void)
         }
         int_map1.push_back(row);
     }
+    ifstream file2("res/maps/test2/simplified/Level_0/Pont.csv");
+    string line2;
+    while (std::getline(file2, line2)) {
+        std::stringstream ss(line2);
+        std::string field;
+        std::vector<int> row;
+        while (std::getline(ss, field, ',')) {
+            row.push_back(stoi(field));
+        }
+        intbridges.push_back(row);
+    }
     for(int i=1;i<int_map1.size()-1;i++){
         for(int j=1;j<int_map1.size()-1;j++){
             if((int_map1[i][j] == 0)&&(int_map1[i-1][j]==1||int_map1[i-1][j-1]==1
             ||int_map1[i][j-1]==1||int_map1[i+1][j-1]==1||int_map1[i+1][j]==1
             ||int_map1[i+1][j+1]==1||int_map1[i][j+1]==1||int_map1[i-1][j+1]==1)){
-                
+                if(intbridges[i][j]==1){
+                    bridgescol.push_back(PhysicsBody(Vector2f(i*16*4.0,j*16*4.0),Vector2f(64.0,64.0),Vector2f(0,0),{}));
+                }
+                else{
+                    map1col.push_back(PhysicsBody(Vector2f(i*16*4.0,j*16*4.0),Vector2f(64.0,64.0),Vector2f(0,0),{}));
+                }
             }
         }
     }
@@ -50,6 +68,7 @@ int main(void)
     float dt = GetFrameTime();
     Vector2f camera_pos;
     SetTargetFPS(60);
+    player.get_col_list(map1col);
     while (!WindowShouldClose())
     {
         dt = GetFrameTime();
