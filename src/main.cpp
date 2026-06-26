@@ -3,6 +3,7 @@
 #include <include/entity.h>
 #include <include/player.h>
 #include <include/enemy.h>
+#include <include/flyingenemy.h>
 
 int main(void)
 {
@@ -16,6 +17,8 @@ int main(void)
 
     Enemy enemy = Enemy(Vector2f(67,67));
 
+    FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
+
     float dt = GetFrameTime();
     Vector2f camera_pos;
     SetTargetFPS(60);
@@ -25,6 +28,8 @@ int main(void)
         player.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y));
         enemy.get_player_pos(player.body.position);
         enemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
+        fenemy.get_player_pos(player.body.position);
+        fenemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
 
         BeginDrawing();
 
@@ -36,6 +41,7 @@ int main(void)
             map.draw(dt,camera_pos);
             player.draw(dt,camera_pos);
             enemy.draw(dt,camera_pos);
+            fenemy.draw(dt,camera_pos);
 
         EndDrawing();
     }
