@@ -28,11 +28,15 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     fireball_intervall = .3;
 
     maxhp = 1000;
-    curhp = 750;
+    curhp = 1000;
     
+    invis_timer = 1.0;
+    invis_time = 0.0;
 
     h_barw = 200;
     h_barh = 15;
+
+    
     
     was_moving=false;
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
@@ -45,6 +49,7 @@ void Player::get_col_list(vector<PhysicsBody> col_list){
 void Player::update(float dt,Vector2f mouse_pos){
     sword_rot_timer+=dt;
     fireball_cd-=dt;
+    invis_timer-=dt;
 
     Vector2f input= Vector2f(0,0);
     bool is_moving = false;
@@ -151,7 +156,11 @@ void Fireball::draw(float dt, Vector2f camera_pos){
 }
 
 void Player::damage(int amount){
-
+    if (invis_timer<=0){
+        curhp-=amount;
+        invis_timer = invis_time;
+    }
+        
 }
 void Fireball::damage(int amount){
 

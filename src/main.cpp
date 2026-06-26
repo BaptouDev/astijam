@@ -94,6 +94,8 @@ int main(void)
 
 
     int room_counter=0;
+    float room_close_time = 1.0;
+    float room_close_timer = -.1;
 
     bool is_fighting = false;
     //Enemy enemy = Enemy(Vector2f(67,67));
@@ -134,7 +136,6 @@ int main(void)
     player.get_col_list(map1col);
     while (!WindowShouldClose())
     {
-
         UpdateMusicStream(music);
   
 
@@ -160,12 +161,14 @@ int main(void)
         //boss.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
 
+        room_close_timer-=dt;
+
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             Vector2f relative_mouse_pos = player.body.position + player.sprite.origin - (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
             if (player.fireball_cd<0){
                 player.fireball_cd = player.fireball_intervall;
                 float mouse_angle = atan2(relative_mouse_pos.y,relative_mouse_pos.x);
-                Fireball ball = Fireball(player.body.position + player.sprite.origin*.5+ Vector2f(-cos(mouse_angle),-sin(mouse_angle))*32.0, RAD2DEG*mouse_angle,200.0, (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos-player.body.position).normalized());
+                Fireball ball = Fireball(player.body.position + player.sprite.origin*.5+ Vector2f(-cos(mouse_angle),-sin(mouse_angle))*32.0, RAD2DEG*mouse_angle,600.0, (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos-player.body.position).normalized());
                 fireballs.push_back(ball);
             }
             
@@ -174,7 +177,7 @@ int main(void)
         for (auto&i : fireballs) {
             i.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
             for (auto j : current_enemies){
-                if(CheckCollisionCircleRec((i.sprite.origin+i.position).to_rayvect2(),i.radius,{j->position.x, j->position.y, 32.0*4.0,32.0*4.0})){
+                if(CheckCollisionCircleRec((i.sprite.origin+i.position).to_rayvect2(),i.radius,{j->position.x, j->position.y, 24.0*4.0,24.0*4.0})){
                     j->damage(50);
                     i.life_timer = -67.0;
                     break;
@@ -202,11 +205,16 @@ int main(void)
             for(auto i : enemies[room_counter]){
                 current_enemies.push_back(i);
             }
-            is_fighting = true;
-            //player.get_col_list(full_col);
+            room_close_timer = room_close_time;
+            
             room_counter++;
-            cout<<"lessgo"<<endl;
         }
+        if(!is_fighting&&room_close_timer<=0){
+            cout<<"lessgo"<<endl;
+            player.get_col_list(full_col);
+            is_fighting=true;
+        }
+
         if(is_fighting&&current_enemies.empty()){
             player.get_col_list(map1col);
         }

@@ -46,6 +46,9 @@ class Player : public AnimatedEntity {
         float fireball_intervall;
         float fireball_cd;
 
+        float invis_time;
+        float invis_timer;
+
         int curhp;
         int maxhp;
 
