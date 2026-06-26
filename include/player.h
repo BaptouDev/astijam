@@ -13,6 +13,8 @@ class Player : public AnimatedEntity {
         //animation variables
         Vector2f last_dir;
 
+        vector<PhysicsBody> col_list;
+
         //sword variables
         Sprite sword_sprite;
         float sword_rot;
@@ -32,6 +34,8 @@ class Player : public AnimatedEntity {
         int h_barh;
 
         PhysicsBody body;
+
+        void get_col_list(vector<PhysicsBody>);
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
         Player(Vector2f init_pos);

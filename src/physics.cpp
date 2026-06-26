@@ -38,5 +38,4 @@ void PhysicsBody::update_physics_col_list(std::vector<PhysicsBody> col_list,floa
         position.y = last_pos.y;
         collision_rect.y = position.y+offset.y;
     }
-    
 }

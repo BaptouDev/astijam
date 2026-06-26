@@ -14,7 +14,7 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     {"run_right", {{0,1,0,2},{.3,.3,.3,.3},false}},
     {"run_left", {{3,4,3,5},{.3,.3,.3,.3},false}},}, 
      "idle_front") {
-    body = PhysicsBody(init_pos,Vector2f(16,16),Vector2f(8,8),{{"hit",false}});
+    body = PhysicsBody(init_pos,Vector2f(48,48),Vector2f(40,48),{{"hit",false}});
     speed=200;
     accel=67;
 
@@ -34,6 +34,10 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     
     was_moving=false;
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
+}
+
+void Player::get_col_list(vector<PhysicsBody> col_list){
+    this->col_list = col_list;
 }
 
 void Player::update(float dt,Vector2f mouse_pos){
@@ -107,7 +111,7 @@ void Player::update(float dt,Vector2f mouse_pos){
     body.velocity = lerpv(body.velocity,input.normalized()*speed,accel*dt);
 
     
-    body.update_physics_col_list({},dt);
+    body.update_physics_col_list(col_list,dt);
     body.last_pos = body.position;
     was_moving = is_moving;
 }
