@@ -18,6 +18,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitAudioDevice();
 
     Player player = Player(Vector2f(128,128));
     Sprite sprite_map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
@@ -125,7 +126,7 @@ int main(void)
                 current_enemies.push_back(i);
             }
             is_fighting = true;
-            //player.get_col_list(full_col);
+            player.get_col_list(full_col);
             room_counter++;
             cout<<"lessgo"<<endl;
         }
@@ -154,6 +155,7 @@ int main(void)
             //boss.draw(dt,camera_pos);
         EndDrawing();
     }
+    CloseAudioDevice();
     CloseWindow();
 
     return 0;
