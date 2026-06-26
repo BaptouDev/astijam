@@ -24,6 +24,13 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     sword_max_rot = 0;
     sword_rot_timer=.5;
     sword_rot_time=.67;
+
+    maxhp = 1000;
+    curhp = 750;
+    
+
+    h_barw = 200;
+    h_barh = 15;
     
     was_moving=false;
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
@@ -108,5 +115,7 @@ void Player::update(float dt,Vector2f mouse_pos){
 void Player::draw(float dt,Vector2f camera_pos){
     sprite.pos = body.position;
     sword_sprite.draw(dt,camera_pos);
+    DrawRectangle(400-h_barw/2,400,h_barw,h_barh,BLACK);
+    DrawRectangle(400-h_barw/2,400,h_barw*(static_cast<float>(curhp)/(float)maxhp),h_barh,GREEN);
     AnimatedEntity::draw(dt,camera_pos);
 }

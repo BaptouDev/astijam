@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <include/flyingenemy.h>
+#include <include/boss.h>
 
 using namespace std;
 
@@ -42,10 +43,10 @@ int main(void)
             }
         }
     }
-
+    //ennemis
     Enemy enemy = Enemy(Vector2f(67,67));
-
     FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
+    Boss boss = Boss(Vector2f(720,720));
 
     float dt = GetFrameTime();
     Vector2f camera_pos;
@@ -59,6 +60,9 @@ int main(void)
         fenemy.get_player_pos(player.body.position);
         fenemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
 
+        boss.get_player_pos(player.body.position);
+        boss.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
+
         BeginDrawing();
 
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
@@ -69,6 +73,7 @@ int main(void)
             player.draw(dt,camera_pos);
             enemy.draw(dt,camera_pos);
             fenemy.draw(dt,camera_pos);
+            boss.draw(dt,camera_pos);
 
         EndDrawing();
     }
