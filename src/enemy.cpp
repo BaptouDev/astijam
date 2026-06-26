@@ -35,6 +35,8 @@ AnimatedEntity(init_pos,"enemy", {}, "res/img/dinoennemi1.png", 4.0, 0.0, 32, 0,
     maxhp = 200;
     hp = maxhp;
 
+    is_dead = false;
+
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
 
