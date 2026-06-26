@@ -4,7 +4,7 @@
 #include "include/physics.h"
 
 
-class FlyingEnemy : AnimatedEntity {
+class FlyingEnemy : public AnimatedEntity {
     public:
         //movement variables
         float speed;
