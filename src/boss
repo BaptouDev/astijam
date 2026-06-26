@@ -48,7 +48,8 @@ AnimatedEntity(init_pos,"boss", {}, "res/img/bossfinal.png", 4.0, 0.0, 32, 0,
     aura_timer = 0;
     is_aurafarming = false;
 
-    hp = 1500;
+    maxhp = 1500;
+    hp = maxhp;
 
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }

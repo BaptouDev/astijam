@@ -10,6 +10,7 @@ class FlyingEnemy : AnimatedEntity {
         float speed;
         bool was_looking_right;
         int hp;
+        int maxhp;
 
         //animation variables
         Vector2f last_dir;
