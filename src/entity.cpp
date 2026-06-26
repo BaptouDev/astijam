@@ -40,10 +40,10 @@ void AnimatedEntity::damage(int amount){
     
 }
 
-void SpriteEntity::is_dead(){
+bool SpriteEntity::is_dead(){
 
 }
 
-void AnimatedEntity::is_dead(){
+bool AnimatedEntity::is_dead(){
     
 }

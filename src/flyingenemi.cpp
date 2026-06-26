@@ -46,7 +46,6 @@ AnimatedEntity(init_pos,"flyingenemy", {}, "res/img/dinoennemi2.png", 4.0, 0.0, 
     maxhp = 150;
     hp = maxhp;
 
-    is_dead = false;
 
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
@@ -140,3 +139,6 @@ void FlyingEnemy::draw(float dt,Vector2f camera_pos){
     AnimatedEntity::draw(dt,camera_pos);
 }
 
+bool FlyingEnemy::is_dead(){
+    return (hp<=0);
+}

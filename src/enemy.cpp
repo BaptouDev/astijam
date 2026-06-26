@@ -35,7 +35,6 @@ AnimatedEntity(init_pos,"enemy", {}, "res/img/dinoennemi1.png", 4.0, 0.0, 32, 0,
     maxhp = 200;
     hp = maxhp;
 
-    is_dead = false;
 
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
@@ -83,4 +82,7 @@ void Enemy::damage(int amount){
 void Enemy::draw(float dt,Vector2f camera_pos){
     sprite.pos = body.position;
     AnimatedEntity::draw(dt,camera_pos);
+}
+bool Enemy::is_dead(){
+    return(hp<=0);
 }

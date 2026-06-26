@@ -157,9 +157,9 @@ void Fireball::damage(int amount){
 
 }
 
-void Player::is_dead(){
+bool Player::is_dead(){
 
 }
-void Fireball::is_dead(){
+bool Fireball::is_dead(){
 
 }

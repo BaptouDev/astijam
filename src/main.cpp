@@ -159,18 +159,19 @@ int main(void)
         for (auto&i : fireballs) {
             i.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
             for (auto j : current_enemies){
-                if(CheckCollisionCircleRec((i.sprite.origin+i.position).to_rayvect2(),i.radius,{j->position.x, j->position.y, 64.0*4.0,64.0*4.0})){
+                if(CheckCollisionCircleRec((i.sprite.origin+i.position).to_rayvect2(),i.radius,{j->position.x, j->position.y, 32.0*4.0,32.0*4.0})){
                     j->damage(50);
                     i.life_timer = -67.0;
                     break;
                 }
             }
         }
-        for (auto i = fireballs.begin(); i != fireballs.end(); ) {
-            if (i->life_timer<0) {
-                i = fireballs.erase(i);
+        for (auto i = current_enemies.begin(); i != current_enemies.end(); ) {
+            if ((*i)->is_dead()) {
+                delete *i;
+                i=current_enemies.erase(i);
             } else {
-            ++i;
+                ++i;
             }
         }
 
@@ -187,7 +188,7 @@ int main(void)
                 current_enemies.push_back(i);
             }
             is_fighting = true;
-            player.get_col_list(full_col);
+            //player.get_col_list(full_col);
             room_counter++;
             cout<<"lessgo"<<endl;
         }

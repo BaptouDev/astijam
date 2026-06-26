@@ -15,7 +15,7 @@ class Fireball : public SpriteEntity {
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
         void damage(int amount) override;
-        void is_dead() override;
+        bool is_dead() override;
 };
 
 class Player : public AnimatedEntity {
@@ -58,7 +58,7 @@ class Player : public AnimatedEntity {
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
         void damage(int amount) override;
-        void is_dead() override;
+        bool is_dead() override;
         Player(Vector2f init_pos);
 };
 //if (IsKeyDown(KEY_RIGHT))

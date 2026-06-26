@@ -16,7 +16,6 @@ class Enemy : public AnimatedEntity {
         Vector2f last_dir;
 
 
-        bool is_dead;
 
         Vector2f player_pos;
 
@@ -24,7 +23,7 @@ class Enemy : public AnimatedEntity {
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
         void damage(int damage) override;
-        void is_dead() override;
+        bool is_dead() override;
         Enemy(Vector2f init_pos);
         void get_player_pos(Vector2f pos);
 };
