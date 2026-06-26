@@ -14,7 +14,7 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     {"run_right", {{0,1,0,2},{.3,.3,.3,.3},false}},
     {"run_left", {{3,4,3,5},{.3,.3,.3,.3},false}},}, 
      "idle_front") {
-    body = PhysicsBody(init_pos,Vector2f(16,16),Vector2f(8,8),{{"hit",false}});
+    body = PhysicsBody(init_pos,Vector2f(48,48),Vector2f(40,48),{{"hit",false}});
     speed=200;
     accel=67;
 
