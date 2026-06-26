@@ -18,7 +18,6 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-    InitAudioDevice();
 
     Player player = Player(Vector2f(128,128));
     Sprite sprite_map = Sprite("res/maps/test2/simplified/Level_0/_composite.png",Vector2f(0,0),4.0,0.0,Vector2f(0,0),720*752,0);
@@ -70,6 +69,7 @@ int main(void)
     vector<PhysicsBody> current_col = map1col;
 
     vector<AnimatedEntity*> current_enemies;
+    vector<Fireball> fireballs;
 
     ifstream entities_file("res/maps/test2/simplified/Level_0/data.json");
     json data_file;
@@ -121,6 +121,43 @@ int main(void)
         //boss.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
 
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            Vector2f relative_mouse_pos = player.body.position + player.sprite.origin - (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
+            if (player.fireball_cd<0){
+                player.fireball_cd = player.fireball_intervall;
+                float mouse_angle = atan2(relative_mouse_pos.y,relative_mouse_pos.x);
+                Fireball ball = Fireball(player.body.position + player.sprite.origin*.5+ Vector2f(-cos(mouse_angle),-sin(mouse_angle))*64.0, RAD2DEG*mouse_angle,200.0, (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos-player.body.position).normalized());
+                fireballs.push_back(ball);
+            }
+            
+        }
+
+        for (auto&i : fireballs) {
+            i.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
+            for (auto j : current_enemies){
+                if(CheckCollisionCircleRec((i.sprite.origin+i.position).to_rayvect2(),i.radius,{j->position.x, j->position.y, 64.0*4.0,64.0*4.0})){
+                    j->damage(50);
+                    i.life_timer = -67.0;
+                    break;
+                }
+            }
+        }
+        for (auto i = fireballs.begin(); i != fireballs.end(); ) {
+            if (i->life_timer<0) {
+                i = fireballs.erase(i);
+            } else {
+            ++i;
+            }
+        }
+
+        for (auto i = fireballs.begin(); i != fireballs.end(); ) {
+            if (i->life_timer<0) {
+                i = fireballs.erase(i);
+            } else {
+            ++i;
+            }
+        }
+
         if(CheckCollisionRecs(player.body.collision_rect,bridges[room_counter].collision_rect)){
             for(auto i : enemies[room_counter]){
                 current_enemies.push_back(i);
@@ -149,13 +186,16 @@ int main(void)
             for(auto i : current_enemies){
                 i->draw(dt,camera_pos);
             }
+            for (auto i : fireballs){
+                i.draw(dt,camera_pos);
+            }
+        
             /*enemy.draw(dt,camera_pos);
             fenemy.draw(dt,camera_pos);*/
             //DrawRectangle(player.body.collision_rect.x-camera_pos.x,player.body.collision_rect.y-camera_pos.y,player.body.collision_rect.width,player.body.collision_rect.height,GREEN);
             //boss.draw(dt,camera_pos);
         EndDrawing();
     }
-    CloseAudioDevice();
     CloseWindow();
 
     return 0;
