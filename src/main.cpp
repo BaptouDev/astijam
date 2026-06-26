@@ -101,12 +101,25 @@ int main(void)
     //FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
     //Boss boss = Boss(Vector2f(72,72));
 
+
+    //Sound sound;
+
+   // InitAudioDevice();
+   
+    //sound= LoadSound("res/audio/eatpizza.wav");
+
     float dt = GetFrameTime();
     Vector2f camera_pos;
     SetTargetFPS(60);
     player.get_col_list(map1col);
     while (!WindowShouldClose())
     {
+       // if(IsKeyDown(KEY_UP)){
+       //     PlaySound(sound);
+
+       // }
+
+
         dt = GetFrameTime();
         player.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
         for(auto i : current_enemies){
@@ -155,6 +168,8 @@ int main(void)
             //boss.draw(dt,camera_pos);
         EndDrawing();
     }
+
+    
     CloseAudioDevice();
     CloseWindow();
 
