@@ -27,6 +27,12 @@ class Player : public AnimatedEntity {
         float sword_rot_halfway;
         float init_rot;
 
+        int curhp;
+        int maxhp;
+
+        int h_barw;
+        int h_barh;
+
         PhysicsBody body;
 
         void get_col_list(vector<PhysicsBody>);
