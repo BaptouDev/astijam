@@ -165,7 +165,7 @@ int main(void)
             if (player.fireball_cd<0){
                 player.fireball_cd = player.fireball_intervall;
                 float mouse_angle = atan2(relative_mouse_pos.y,relative_mouse_pos.x);
-                Fireball ball = Fireball(player.body.position + player.sprite.origin*.5+ Vector2f(-cos(mouse_angle),-sin(mouse_angle))*64.0, RAD2DEG*mouse_angle,200.0, (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos-player.body.position).normalized());
+                Fireball ball = Fireball(player.body.position + player.sprite.origin*.5+ Vector2f(-cos(mouse_angle),-sin(mouse_angle))*32.0, RAD2DEG*mouse_angle,200.0, (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos-player.body.position).normalized());
                 fireballs.push_back(ball);
             }
             
