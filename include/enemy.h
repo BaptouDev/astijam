@@ -16,7 +16,7 @@ class Enemy : public AnimatedEntity {
         Vector2f last_dir;
 
 
-
+        bool is_dead;
 
         Vector2f player_pos;
 

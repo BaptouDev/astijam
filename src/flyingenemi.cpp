@@ -46,6 +46,8 @@ AnimatedEntity(init_pos,"flyingenemy", {}, "res/img/dinoennemi2.png", 4.0, 0.0, 
     maxhp = 150;
     hp = maxhp;
 
+    is_dead = false;
+
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
 

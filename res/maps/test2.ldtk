@@ -2353,7 +2353,7 @@
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [6,20],
+							"__grid": [6,21],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2362,14 +2362,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [96,320],
+							"px": [96,336],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 1, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [1] }] }],
 							"__worldX": 96,
-							"__worldY": 320
+							"__worldY": 336
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [8,8],
+							"__grid": [8,9],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2378,14 +2378,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [128,128],
+							"px": [128,144],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 0, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [0] }] }],
 							"__worldX": 128,
-							"__worldY": 128
+							"__worldY": 144
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [8,35],
+							"__grid": [8,36],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2394,14 +2394,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [128,560],
+							"px": [128,576],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 2, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }],
 							"__worldX": 128,
-							"__worldY": 560
+							"__worldY": 576
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [20,37],
+							"__grid": [20,36],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2410,14 +2410,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,592],
+							"px": [320,576],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 3, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }],
 							"__worldX": 320,
-							"__worldY": 592
+							"__worldY": 576
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [35,9],
+							"__grid": [35,10],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2426,14 +2426,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [560,144],
+							"px": [560,160],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 6, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }],
 							"__worldX": 560,
-							"__worldY": 144
+							"__worldY": 160
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [34,21],
+							"__grid": [34,22],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2442,14 +2442,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [544,336],
+							"px": [544,352],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 7, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }],
 							"__worldX": 544,
-							"__worldY": 336
+							"__worldY": 352
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [20,27],
+							"__grid": [20,26],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2458,14 +2458,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [320,432],
+							"px": [320,416],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 4, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }],
 							"__worldX": 320,
-							"__worldY": 432
+							"__worldY": 416
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [21,14],
+							"__grid": [21,13],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2474,14 +2474,14 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [336,224],
+							"px": [336,208],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": 5, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }],
 							"__worldX": 336,
-							"__worldY": 224
+							"__worldY": 208
 						},
 						{
 							"__identifier": "Bridge",
-							"__grid": [35,31],
+							"__grid": [35,32],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2490,10 +2490,10 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 47,
-							"px": [560,496],
+							"px": [560,512],
 							"fieldInstances": [{ "__identifier": "room", "__type": "Int", "__value": -1, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [-1] }] }],
 							"__worldX": 560,
-							"__worldY": 496
+							"__worldY": 512
 						}
 					]
 				},
