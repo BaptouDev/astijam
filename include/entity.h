@@ -19,7 +19,7 @@ class Entity{
         Entity(Vector2f position, string tag, vector<string> layers);
 };
 
-class SpriteEntity : Entity{
+class SpriteEntity : public Entity{
     public:
         Sprite sprite;
         void update(float dt,Vector2f mouse_pos) override;
@@ -27,7 +27,7 @@ class SpriteEntity : Entity{
         SpriteEntity(Vector2f position, string tag, vector<string> layers,const char* path_to_img, float scale, float rotation, int tile_size, int index);
 };
 
-class AnimatedEntity : Entity{
+class AnimatedEntity : public Entity{
     public:
         AnimatedSprite sprite;
         void update(float dt,Vector2f mouse_pos) override;

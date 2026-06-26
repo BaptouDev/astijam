@@ -3,7 +3,7 @@
 #include "include/entity.h"
 #include "include/physics.h"
 
-class Player : AnimatedEntity {
+class Player : public AnimatedEntity {
     public:
         //movement variables
         float speed;
@@ -18,6 +18,7 @@ class Player : AnimatedEntity {
         float sword_rot;
         float col_radius;
         float dist;
+        float sword_dist_from_pivot;
         float sword_max_rot;
         float sword_rot_time;
         float sword_rot_timer;
