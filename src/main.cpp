@@ -140,7 +140,7 @@ int main(void)
 
   
 
-        if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
+        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
             PlaySound(hitsound);
         }
         
