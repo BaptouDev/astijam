@@ -50,9 +50,7 @@ int main(void)
     }
     for(int i=1;i<int_map1.size()-1;i++){
         for(int j=1;j<int_map1.size()-1;j++){
-            if((int_map1[i][j] == 0)/*&&(int_map1[i-1][j]==1||int_map1[i-1][j-1]==1
-            ||int_map1[i][j-1]==1||int_map1[i+1][j-1]==1||int_map1[i+1][j]==1
-            ||int_map1[i+1][j+1]==1||int_map1[i][j+1]==1||int_map1[i-1][j+1]==1)*/){
+            if((int_map1[i][j] == 0)){
                 if(intbridges[i][j]==1){
                     bridgescol.push_back(PhysicsBody(Vector2f(j*16*4.0,i*16*4.0),Vector2f(64.0,64.0),Vector2f(0,0),{}));
                 }
@@ -76,6 +74,7 @@ int main(void)
     Enemy enemy = Enemy(Vector2f(67,67));
 
     FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
+    //Boss boss = Boss(Vector2f(72,72));
 
     float dt = GetFrameTime();
     Vector2f camera_pos;
@@ -89,6 +88,9 @@ int main(void)
         enemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         fenemy.get_player_pos(player.body.position);
         fenemy.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
+
+        //boss.get_player_pos(player.body.position);
+        //boss.update(dt,Vector2f(GetMousePosition().x,GetMousePosition().y) );
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
         BeginDrawing();
             ClearBackground(SKYBLUE);
@@ -102,6 +104,7 @@ int main(void)
             enemy.draw(dt,camera_pos);
             fenemy.draw(dt,camera_pos);
             DrawRectangle(player.body.collision_rect.x-camera_pos.x,player.body.collision_rect.y-camera_pos.y,player.body.collision_rect.width,player.body.collision_rect.height,GREEN);
+            //boss.draw(dt,camera_pos);
 
         EndDrawing();
     }

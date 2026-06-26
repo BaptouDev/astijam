@@ -43,7 +43,8 @@ AnimatedEntity(init_pos,"flyingenemy", {}, "res/img/dinoennemi2.png", 4.0, 0.0, 
     dive_duration = 0.7;
     dive_duration_timer =0;
 
-    hp = 150;
+    maxhp = 150;
+    hp = maxhp;
 
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
