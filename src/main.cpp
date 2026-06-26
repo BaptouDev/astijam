@@ -111,9 +111,10 @@ int main(void)
    
     sound= LoadSound("res/audio/eatpizza.wav");
 
-    music = LoadMusicStream("res/audio/song1.wav");
+    music = LoadMusicStream("res/audio/song2.wav");
 
     PlayMusicStream(music);
+    
 
     float dt = GetFrameTime();
     Vector2f camera_pos;
@@ -128,6 +129,9 @@ int main(void)
 
         }
 
+  
+
+        
         
 
 
