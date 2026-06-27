@@ -4,6 +4,7 @@
 #include <include/entity.h>
 #include <include/player.h>
 #include <include/enemy.h>
+#include <include/pizza.h>
 #include <include/json.hpp>
 #include <fstream>
 #include <iostream>
@@ -69,6 +70,7 @@ int main(void)
     vector<PhysicsBody> current_col = map1col;
 
     vector<AnimatedEntity*> current_enemies;
+    vector<Pizza>curpizzas;
     vector<Fireball> fireballs;
 
     ifstream entities_file("res/maps/test2/simplified/Level_0/data.json");
@@ -76,6 +78,7 @@ int main(void)
     entities_file>>data_file;
     map<int,vector<AnimatedEntity*>> enemies;
     map<int,AreaRect> bridges;
+    map<int, vector<Pizza>> pizzas;
 
     auto dino_enemy1_file = data_file["entities"]["DinoEnemy1"].get<vector<json>>();
     for(auto i : dino_enemy1_file){
@@ -92,6 +95,14 @@ int main(void)
         bridges[i["customFields"]["room"].get<int>()] = AreaRect(Vector2f(i["x"].get<float>()*4.0,i["y"].get<float>()*4.0),Vector2f(64,64),Vector2f(0,0));
     }
 
+    auto pizza_file = data_file["entities"]["Pizza"].get<vector<json>>();
+    for(auto i : pizza_file){
+        pizzas[i["customFields"]["room"].get<int>()].push_back(Pizza(Vector2f(i["x"].get<float>()*4.0,i["y"].get<float>()*4.0), i["customFields"]["timer"].get<float>()));
+    }
+    			
+				
+    float healthtimer_player = 0.3;
+    float healthtime_player = 0;
 
     int room_counter=0;
     float room_close_time = 1.0;
@@ -139,7 +150,7 @@ int main(void)
         UpdateMusicStream(music);
   
 
-  
+        
 
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             PlaySound(boulefire);
@@ -162,6 +173,7 @@ int main(void)
         camera_pos = player.sprite.origin + player.body.position -Vector2f(screenWidth,screenHeight)*(.5);
 
         room_close_timer-=dt;
+        healthtime_player += dt;
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             Vector2f relative_mouse_pos = player.body.position + player.sprite.origin - (Vector2f(GetMousePosition().x,GetMousePosition().y)+camera_pos);
@@ -189,6 +201,7 @@ int main(void)
                 delete *i;
                 i=current_enemies.erase(i);
                 PlaySound(enemibeatup);
+                player.health(75);
             } else {
                 ++i;
             }
@@ -206,14 +219,36 @@ int main(void)
             for(auto i : enemies[room_counter]){
                 current_enemies.push_back(i);
             }
+            for(auto i : pizzas[room_counter]){
+                curpizzas.push_back(i);
+            }
             room_close_timer = room_close_time;
             
             room_counter++;
         }
+        for (auto i = curpizzas.begin(); i != curpizzas.end(); ){
+            Rectangle shit;
+            shit = {i->position.x + 36, i->position.y + 32, 64,64};
+            if(CheckCollisionRecs(player.body.collision_rect,shit)){
+                i = curpizzas.erase(i);
+                player.health(100);
+            }else{
+                i++;
+            }
+        }
+  
+
+
+
         if(!is_fighting&&room_close_timer<=0){
             cout<<"lessgo"<<endl;
             player.get_col_list(full_col);
             is_fighting=true;
+        }
+
+        if(healthtime_player >= healthtimer_player){
+            healthtime_player = 0 ;
+            player.damage(10);
         }
 
         if(is_fighting&&current_enemies.empty()){
@@ -231,6 +266,10 @@ int main(void)
             /*for(auto i: bridges){
                 DrawRectangle(i.second.collision_rect.x-camera_pos.x,i.second.collision_rect.y-camera_pos.y,i.second.collision_rect.height,i.second.collision_rect.width,GREEN);
             }*/
+
+            for(auto i : curpizzas){
+                i.draw(dt,camera_pos);
+            }
             player.draw(dt,camera_pos);
             for(auto i : current_enemies){
                 i->draw(dt,camera_pos);
@@ -238,6 +277,8 @@ int main(void)
             for (auto i : fireballs){
                 i.draw(dt,camera_pos);
             }
+
+
         
             /*enemy.draw(dt,camera_pos);
             fenemy.draw(dt,camera_pos);*/

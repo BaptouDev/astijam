@@ -16,6 +16,8 @@ class Fireball : public SpriteEntity {
         void draw(float dt,Vector2f camera_pos) override;
         void damage(int amount) override;
         bool is_dead() override;
+
+      
 };
 
 class Player : public AnimatedEntity {
@@ -55,6 +57,8 @@ class Player : public AnimatedEntity {
         int h_barw;
         int h_barh;
 
+  
+
         PhysicsBody body;
 
         void get_col_list(vector<PhysicsBody>);
@@ -63,5 +67,7 @@ class Player : public AnimatedEntity {
         void damage(int amount) override;
         bool is_dead() override;
         Player(Vector2f init_pos);
+
+        void health(int amount);
 };
 //if (IsKeyDown(KEY_RIGHT))

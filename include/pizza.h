@@ -12,8 +12,10 @@ class Pizza : public SpriteEntity {
         void update(float dt,Vector2f mouse_pos) override;
         void draw(float dt,Vector2f camera_pos) override;
         void damage(int damage) override;
+        float lifetime;
+        Pizza(Vector2f init_pos, float lifetime);
 
-        Pizza(Vector2f init_pos);
+        int pizza_health;
 
 };
 

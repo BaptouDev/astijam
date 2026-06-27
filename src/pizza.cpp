@@ -6,10 +6,13 @@
 using namespace std;
 
 
-Pizza::Pizza(Vector2f init_pos):
+Pizza::Pizza(Vector2f init_pos, float lifetime):
 SpriteEntity(init_pos,"enemy", {}, "res/img/pizza.png", 4.0, 0.0, 32, 0) {
 
+position = init_pos;
+this->lifetime = lifetime;
 
+pizza_health = 100;
     
 }
 
@@ -38,6 +41,6 @@ void Pizza::damage(int amount){
  */
 
 void Pizza::draw(float dt,Vector2f camera_pos){
-    sprite.pos = body.position;
+    sprite.pos = position;
     SpriteEntity::draw(dt,camera_pos);
 }

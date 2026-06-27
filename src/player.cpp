@@ -36,7 +36,7 @@ AnimatedEntity(init_pos,"player", {}, "res/img/player.png", 4.0, 0.0, 32, 0,
     h_barw = 200;
     h_barh = 15;
 
-    
+  
     
     was_moving=false;
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
@@ -162,12 +162,20 @@ void Player::damage(int amount){
     }
         
 }
+
+void Player::health(int amount){
+    curhp=min(maxhp, curhp + amount);
+}
+
 void Fireball::damage(int amount){
 
 }
 
 bool Player::is_dead(){
-
+    if(curhp <= 1){
+        return true;
+    }
+    false;
 }
 bool Fireball::is_dead(){
 
