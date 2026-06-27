@@ -53,6 +53,8 @@ AnimatedEntity(init_pos,"boss", {}, "res/img/bossfinal.png", 4.0, 0.0, 32, 0,
     maxhp = 1500;
     hp = maxhp;
 
+    enemibeatup = LoadSound("res/audio/enemigetbeatup.wav");
+
     sprite.origin = Vector2f(16*sprite.scale,16*sprite.scale);
 }
 

@@ -17,6 +17,8 @@ class Boss : AnimatedEntity {
 
         bool is_dead;
 
+        Sound enemibeatup;
+
         //dive
         float dive_timer;
         float dive_time; //periode

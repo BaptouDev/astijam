@@ -15,6 +15,11 @@ class Enemy : public AnimatedEntity {
         //animation variables
         Vector2f last_dir;
 
+      
+        
+
+
+        Sound enemibeatup;
 
 
         Vector2f player_pos;

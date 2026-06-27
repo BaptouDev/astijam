@@ -42,6 +42,7 @@ AnimatedEntity(init_pos,"flyingenemy", {}, "res/img/dinoennemi2.png", 4.0, 0.0, 
 
     dive_duration = 0.7;
     dive_duration_timer =0;
+    enemibeatup = LoadSound("res/audio/enemigetbeatup.wav");
 
     maxhp = 150;
     hp = maxhp;
@@ -118,6 +119,8 @@ void FlyingEnemy::update(float dt, Vector2f mouse_pos){
 
 void FlyingEnemy::damage(int amount){
     hp-=amount;
+    PlaySound(enemibeatup);
+
 }
 
 

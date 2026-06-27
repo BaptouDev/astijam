@@ -15,7 +15,7 @@ class FlyingEnemy : public AnimatedEntity {
         //animation variables
         Vector2f last_dir;
 
-
+        Sound enemibeatup;
         //dive
         float dive_timer;
         float dive_time; //periode

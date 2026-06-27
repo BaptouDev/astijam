@@ -761,6 +761,246 @@
 					"room": -1
 				}
 			}
+		],
+		"Pizza": [
+			{
+				"id": "Pizza",
+				"iid": "67528b80-6fc0-11f1-b75c-5304b29afde4",
+				"layer": "Entities",
+				"x": 80,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 0,
+					"timer": 2
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "67e50780-6fc0-11f1-b75c-f797534ff1b1",
+				"layer": "Entities",
+				"x": 144,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 0,
+					"timer": 1
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "72070600-6fc0-11f1-b75c-87bfbbba0954",
+				"layer": "Entities",
+				"x": 144,
+				"y": 384,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 1,
+					"timer": 1
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "728361f0-6fc0-11f1-b75c-db19800bde57",
+				"layer": "Entities",
+				"x": 176,
+				"y": 464,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 1,
+					"timer": 2
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "89411180-6fc0-11f1-b75c-73bf9efb4859",
+				"layer": "Entities",
+				"x": 304,
+				"y": 624,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 2,
+					"timer": 10
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "93323c00-6fc0-11f1-b75c-9ff07449c863",
+				"layer": "Entities",
+				"x": 320,
+				"y": 480,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 3,
+					"timer": 2
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "97d5ac60-6fc0-11f1-b75c-03f49340b1af",
+				"layer": "Entities",
+				"x": 336,
+				"y": 272,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 4,
+					"timer": 5
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "9857d4b0-6fc0-11f1-b75c-4f9fe750d6c8",
+				"layer": "Entities",
+				"x": 352,
+				"y": 368,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 4,
+					"timer": 1
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "a1d22180-6fc0-11f1-b75c-0b682e62df43",
+				"layer": "Entities",
+				"x": 288,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 5,
+					"timer": 3
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "a2477890-6fc0-11f1-b75c-cbc7e225b3f0",
+				"layer": "Entities",
+				"x": 400,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 5,
+					"timer": 6
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "b3fa6a70-6fc0-11f1-b75c-d7e21feb2f51",
+				"layer": "Entities",
+				"x": 672,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 6,
+					"timer": 2
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "b49e4b90-6fc0-11f1-b75c-6ba392c7927e",
+				"layer": "Entities",
+				"x": 496,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 6,
+					"timer": 4
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "c3246780-6fc0-11f1-b75c-616f90c40d60",
+				"layer": "Entities",
+				"x": 672,
+				"y": 336,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 7,
+					"timer": 4
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "c3a3a9a0-6fc0-11f1-b75c-654e20bff9a9",
+				"layer": "Entities",
+				"x": 544,
+				"y": 448,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 7,
+					"timer": 5
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "f4c46a10-6fc0-11f1-b75c-6f443e9d6e5c",
+				"layer": "Entities",
+				"x": 656,
+				"y": 640,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 8,
+					"timer": 5
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "f57172f0-6fc0-11f1-b75c-9f61c47157ef",
+				"layer": "Entities",
+				"x": 656,
+				"y": 592,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 8,
+					"timer": 10
+				}
+			},
+			{
+				"id": "Pizza",
+				"iid": "f7a85020-6fc0-11f1-b75c-09b59a0ba17a",
+				"layer": "Entities",
+				"x": 656,
+				"y": 544,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"room": 8,
+					"timer": 15
+				}
+			}
 		]
 	}
 }

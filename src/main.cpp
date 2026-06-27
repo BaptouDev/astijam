@@ -102,7 +102,7 @@ int main(void)
 
     //FlyingEnemy fenemy = FlyingEnemy(Vector2f(360,360));
     //Boss boss = Boss(Vector2f(72,72));
-
+    InitAudioDevice();
 
     Sound pizza;
     Sound gameover;
@@ -141,8 +141,8 @@ int main(void)
 
   
 
-        if(IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)){
-            PlaySound(hitsound);
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+            PlaySound(boulefire);
         }
         
 
@@ -188,6 +188,7 @@ int main(void)
             if ((*i)->is_dead()) {
                 delete *i;
                 i=current_enemies.erase(i);
+                PlaySound(enemibeatup);
             } else {
                 ++i;
             }
